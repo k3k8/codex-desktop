@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/sh
+set -eu
+# uv must already be installed. This file's pinned version triggers upgrades.
+uv tool install --force --python 3.11 --from https://github.com/k3k8/codex-desktop/archive/refs/tags/v0.1.0.tar.gz codex-desktop-bridge
+"$(uv tool dir --bin)/codex-desktop-setup" enable
+{{ end -}}

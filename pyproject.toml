@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-desktop-bridge"
+version = "0.1.0"
+description = "Connect the Codex CLI to the desktop app's own app-server"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "Kota Kobayashi"}]
+dependencies = ["websockets>=14,<18"]
+
+[project.urls]
+Repository = "https://github.com/k3k8/codex-desktop"
+
+[project.scripts]
+codex-desktop = "codex_desktop.cli:main"
+codex-desktop-app = "codex_desktop.backend:entry"
+codex-desktop-setup = "codex_desktop.setup:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

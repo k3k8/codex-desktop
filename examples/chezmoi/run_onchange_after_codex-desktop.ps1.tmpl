@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "windows" -}}
+$ErrorActionPreference = 'Stop'
+& uv tool install --force --python 3.11 --from https://github.com/k3k8/codex-desktop/archive/refs/tags/v0.1.0.tar.gz codex-desktop-bridge
+if ($LASTEXITCODE -ne 0) { throw 'uv tool install failed' }
+$binDir = (& uv tool dir --bin).Trim()
+if ($LASTEXITCODE -ne 0) { throw 'uv tool dir failed' }
+& (Join-Path $binDir 'codex-desktop-setup.exe') enable
+if ($LASTEXITCODE -ne 0) { throw 'Desktop setup failed' }
+{{ end -}}
